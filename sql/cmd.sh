@@ -16,10 +16,10 @@ CREATE OPERAOR + (
   commurator = +);
 CREATE OPERAOR
 
-SELECT comp1, comp2, () AS ""
+SELECT comp1, comp2, (comp1 + comp2) AS "comp1 + comp2"
   FROM complex_pair;
 
-DROP OPERATOR + ();
+DROP OPERATOR + (complex, complex);
 DROP OPERAROR
 
 //
@@ -28,3 +28,7 @@ DROP OPERAROR
 //
 //
 //
+
+
+
+
