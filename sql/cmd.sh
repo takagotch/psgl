@@ -216,13 +216,55 @@ SELECT relname, relpages FROM pg_class
 WHERE relname = 'all_customers';
 
 //EXPLAIN
-
+EXPLAIN SELECT * FROM customerlist;
+EXPLAIN SELECT a.id, a.name, b.cmpany
+	FROM customerlist AS a, companylist AS b
+		WHERE a.companycode = b.companycode;
 
 //ANALYZE
+ANALYZE;
+
+//VACUUM
+VACUUM;
+VACUUM ANALYZE;
+
+//RESET
+RESET enable_seqscan;
+SHOW enable_seqscan;
+
+
+//SHOW
+SHOW enable_seqscan;
+SHOW ALL;
+
+//SET
 
 
 //
 
+
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
 
 //
 
