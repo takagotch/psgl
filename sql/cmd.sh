@@ -195,14 +195,30 @@ cat /home/postgres/literature.csv
 //COPY FROM
 cat /home/postgres/customerlist.txt
 
+COPY customerlist FROM '/home/postgres/customerlist.txt';
+
+od -c /home/postgres/customerlist.bin
+
+COPY customerlist FROM '/home/postgres/customerlist.bin' BINARY;
+
+SELECT * FROM customerlist;
+
+cat /home/postgres/literature.csv
+
+COPY literature FROM '/home/postgres/literature.csv' CSV HEADER;
+
+SELECT * FROM literature ;
+
+//EXPLAIN
+EXPLAIN SELECT * FROM all_customers;
+
+SELECT relname, relpages FROM pg_class
+WHERE relname = 'all_customers';
+
+//EXPLAIN
 
 
-//
-
-//
-
-
-//
+//ANALYZE
 
 
 //
