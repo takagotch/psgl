@@ -160,9 +160,27 @@ UPDATE itemlist SET price = 300 WHERE name = 'notebook';
 SELECT * FROM itemlist_log;
 
 
+SELECT rulename FROM pg_rules;
+
+SELECT rulename, definition FROM pg_rules
+		WHERE rulename = 'update_itemlist_rule';
+
+CREATE RULE raise_price_itemlist_rule AS ON UPDATE TO itemlist
+	WHERE OLD.price < NEW.price DO
+		INSERT INTO itemlist_log VALUES
+		  (NEW.name, OLD.price, NEW.price, CURRENT_TIMESTAMPS);
+
+DROP RULE update_itemlist_rule ON itemlist;
+
+CREATE VIEW myview AS SELECT * FROM mytable;
+
+CREATE TABLE myview ("mytable SAME");
+CREATE RULE "_RETmyview" AS ON SELECT TO myview DO INSTEAD SELECT * FROM mytable;
+
+//COPY TO
+SELECT * FROM customerlist;
 
 
-//
 
 //
 
