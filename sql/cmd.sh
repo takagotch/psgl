@@ -180,9 +180,22 @@ CREATE RULE "_RETmyview" AS ON SELECT TO myview DO INSTEAD SELECT * FROM mytable
 //COPY TO
 SELECT * FROM customerlist;
 
+COPY customerlist TO '/home/postgres/customerlist.txt';
+
+cat /home/postgres/customerlist.txt
+
+COPY customerlist TO '/home/postgresql/customerlist.bin' BINARY;
+
+SELECT * FROM literature;
+
+COPY literature TO '/home/postgres/literature.csv' CSV HEADER FORCE QUOTE title, auther, context;
+
+cat /home/postgres/literature.csv
+
+//COPY FROM
+cat /home/postgres/customerlist.txt
 
 
-//
 
 //
 
