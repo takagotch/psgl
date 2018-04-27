@@ -238,19 +238,51 @@ SHOW enable_seqscan;
 SHOW ALL;
 
 //SET
+SET enable_seqscan TO OFF;
+SHOW enable_seqscan;
+SET commit_delay = 1000;
+SHOW commit_delay;
+
+//LOCK
+BEGIN;
+LOCK itemlist INEXCUSIVE MODE;
+UPDATE itemlist SET price = 75 WHERE id = 3;
+END;
+
+LOCK itemlist INACCESS SHARE MODE;
+
+BEGIN;
+LOCK itemlist IN EXCLUSIVE MODE;
+UPDATE itemlist SET price = 75 WHERE id = 3;
+END;
+
+LOCK itemlist IN ROW EXCLUSIVE MODE;
+
+BEGIN;
+LOCK itemlist IN EXCLUSIVE MODE;
+UPDATE itemlist SET price = 75 WHERE id = 3;
+END;
+
+LOCK itemlist IN ROW EXCLUSIVE MODE NOWAIT;
+
+//PREPARE TRANSACTION
+BEGIN;
+PREPARE TRANSACTION 'mission-02';
+SELECT * FROM pg_prepared_xacts;
+COMMIT PREPARED 'mission-01';
+SELECT * FROM pg_prepared_xacts;
+
+//SET CONSTRAINTS
+
+//SAVEPOINT
+BEGIN;
+INSERT INTO savepoint_test VALUES ();
+SAVEPOINT sp1;
+INSERT INTO savepoint_test VALUES ();
+SAVEPOINT sp2;
 
 
-//
-
-
-
-//
-
-//
-
-//
-
-//
+//SET TRANSACTION ISOLATION LEVEL, SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL
 
 //
 
