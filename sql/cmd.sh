@@ -312,7 +312,8 @@ SELECT id, name, price FROM item.list;
 BEGIN;
 UPDATE itemlist SET price = 80 WHERE id = 3;
 COMMIT;
-
+SELECT id, name, price FROM itemlist;
+BEGINl
 
 
 START
