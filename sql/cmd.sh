@@ -313,10 +313,13 @@ BEGIN;
 UPDATE itemlist SET price = 80 WHERE id = 3;
 COMMIT;
 SELECT id, name, price FROM itemlist;
-BEGINl
+BEGIN;
+UPDATE itemlist SET price = 130 WHERE id = 3;
+COMMIT;
 
 
-START
+START TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
 
 BEGIN
 
