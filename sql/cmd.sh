@@ -276,25 +276,34 @@ SELECT * FROM pg_prepared_xacts;
 
 //SAVEPOINT
 BEGIN;
-INSERT INTO savepoint_test VALUES ();
+INSERT INTO savepoint_test VALUES (0, 'savepointSETBACK');
 SAVEPOINT sp1;
-INSERT INTO savepoint_test VALUES ();
+INSERT INTO savepoint_test VALUES (1, 'savepointSETPREV');
 SAVEPOINT sp2;
-INSERT INTO savepoint_test VALUES ();
+INSERT INTO savepoint_test VALUES (2, 'savepointSETBACK');
 SAVEPOINT sp3;
-INSERT INTO savepoint_test VALUES ();
+INSERT INTO savepoint_test VALUES (3, 'savepointSETPREV');
 SELECT * FROM savepoint_test;
 
 ROLLBACK TO SAVEPOINT sp2;
 SELECT * FROM savepoint_test;
 
-INSERT INTO savepoint_test VALUES ();
+INSERT INTO savepoint_test VALUES (4, 'savepointROLLBACKBACK');
 COMMIT;
 
 SELECT * FROM savepoint_test;
 
 BEGIN;
 DECLARE pref CURSOR FOR SELECT * FROM prefecture ORDER BY id;
+
+FETCH IN pref;
+
+SAVEPOINT sp1;
+
+FETCH FORWARD 6 IN pref;
+
+ROLLBACK TO SAVEPOINT sp1;
+FETCH IN pref;
 
 //SET TRANSACTION ISOLATION LEVEL, SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL
 
