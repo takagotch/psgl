@@ -368,7 +368,8 @@ FETCH IN pref;
 FETCH FORWARD 6 IN pref;
 
 FETCH RELATIVE 0 IN pref;
-FETCH
+FETCH FORWARD 0 IN pref;
+
 
 //
 
