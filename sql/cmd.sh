@@ -379,6 +379,7 @@ FETCH NEXT IN pref;
 BEGIN;
 DECLARE pref CURSOR FOR SELECT * FROM prefecture ORDER BY id;
 
+BEGIN;
 
 //
 
