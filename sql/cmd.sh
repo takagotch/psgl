@@ -332,7 +332,13 @@ BEGIN ISOLATION LEVEL SERIALIZABLE;
 SHOW TRANSACTION ISOLATION LEVEL;
 
 //PREPARE, EXECUTE, DEALLOCATE
-PREPARE
+PREPARE count_customer AS SELECT count(*) FROM customerlist;
+EXECUTE count_customer;
+PREPARE select_customer(integer)
+  AS SELECT * FROM customerlist WHERE id = $1;
+EXECUTE select_customer(1);
+EXECUTE select_customer(2);
+
 
 //
 
