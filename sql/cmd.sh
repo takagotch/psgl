@@ -385,7 +385,13 @@ DECLARE view_cursor CURSOR FOR
 
 BEGIN;
 DECLARE maker_cursor CURSOR FOR SELECT * FROM makerlist;
+DECLARE maker_cursor CURSOR FOR SELECT * FROM itemlist;
 
+BEGIN;
+DECLARE pref CURSOR WITH HOLD FOR SELECT * FROM prefecture ORDER BY id;
+FETCH 6 IN pref;
+COMMIT;
+FETCH 6 IN pref;
 
 //
 
