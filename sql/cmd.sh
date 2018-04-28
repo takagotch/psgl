@@ -361,7 +361,12 @@ FETCH IN pref;
 
 MOVE 1000 IN pref;
 
-//
+//FETCH
+DECLARE pref CURSOR FOR SELECT * FROM prefecture ORDER BY id;
+FETCH IN pref;
+
+FETCH FORWARD 6 IN pref;
+
 
 //
 
