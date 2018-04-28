@@ -338,9 +338,23 @@ PREPARE select_customer(integer)
   AS SELECT * FROM customerlist WHERE id = $1;
 EXECUTE select_customer(1);
 EXECUTE select_customer(2);
+DEALLOCATE select_customer;
 
+//MOVE
+BEGIN;
+DECLARE pref CURSOR FOR SELECT * FROM prefecture ORDER BY id;
+MOVE 13 IN pref;
+FETCH IN pref;
 
-//
+MOVE BACKWARD 8 IN pref;
+FETCH IN pref;
+MOVE LAST IN pref;
+FETCH RELATIVE 0 IN pref;
+
+MOVE ALL IN pref;
+FETCH RELATIVE 0 IN pref;
+FETCH IN pref;
+FETCH BACKWARD 1 IN pref;
 
 //
 
