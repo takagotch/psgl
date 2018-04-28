@@ -380,6 +380,12 @@ BEGIN;
 DECLARE pref CURSOR FOR SELECT * FROM prefecture ORDER BY id;
 
 BEGIN;
+DECLARE view_cursor CURSOR FOR
+  SELECT * FROM customer_view ORDER BY id;
+
+BEGIN;
+DECLARE maker_cursor CURSOR FOR SELECT * FROM makerlist;
+
 
 //
 
