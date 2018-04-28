@@ -367,6 +367,7 @@ FETCH IN pref;
 
 FETCH FORWARD 6 IN pref;
 
+FETCH
 
 //
 
