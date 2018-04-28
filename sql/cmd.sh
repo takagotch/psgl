@@ -375,7 +375,10 @@ FETCH BACKWARD 3 IN pref;
 
 FETCH NEXT IN pref;
 
-//
+//DECLARE, CLOSE
+BEGIN;
+DECLARE pref CURSOR FOR SELECT * FROM prefecture ORDER BY id;
+
 
 //
 
