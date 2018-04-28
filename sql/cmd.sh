@@ -356,6 +356,11 @@ FETCH RELATIVE 0 IN pref;
 FETCH IN pref;
 FETCH BACKWARD 1 IN pref;
 
+MOVE BACKWARD ALL IN pref;
+FETCH IN pref;
+
+MOVE 1000 IN pref;
+
 //
 
 //
