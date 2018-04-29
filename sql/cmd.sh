@@ -475,9 +475,39 @@ SELECT * FROM count_update;
 ALTER TRIGGER companycode_check ON customerlist RENAME TO check_cc;
 DROP TRIGGER update_number_of_items ON itemlist;
 
-//
+//CREATE SEQUENCE, ALTER SEQUENCE, DROP SEQUENCE
+\ds
+CREATE SEQUENCE customerid;
+INSERT INTO customerlist VALUES (nextval('customerid'), 'TKY', 4);
+INSERT INTO customerlist VALUES (nextval('customerid'), 'takagotch', 2);
+SELECT * FROM customerlist;
 
-//
+CREATE SEQUENCE seq)limit MINVALUES 999999999999999999 NO CYCLE;
+SELECT nextval ('seq_limit');
+SELECT nextval ('seq_limit');
+SELECT nextval ('seq_limit');
+
+CREATE SEQUENCE seq_cycle INCREMENT 15
+                MINVALUES 0 MAXVALUES 30
+		START 0
+		CYCLE;
+SELECT nextval ('seq_cycle');
+SELECT nextval ('seq_cycle');
+SELECT nextval ('seq_cycle');
+SEELCT nextval ('seq_cycle');
+
+CREATE SEQUENCE seq_text;
+SELECT nextval('seq_test');
+SELECT setval('seq_test', 10);
+SELECT nextval('seq_test');
+
+ALTER SEQUENCE seq_test RESTART WITH 10;
+SELECT nextval('seq_test');
+
+DROP SEQUENCE seq_setval;
+
+//CREATE VIEW, DROP VIEW
+
 
 
 
