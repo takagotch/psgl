@@ -412,6 +412,9 @@ CREATE TABLE number_of_item (count bigint);
 INSERT INTO number_of_items (count) SELECT count(*) FROM itemlist;
 CREATE FUNCTION count_number_of_item () RETURNS trigger AS
 $$
+  DECLARE
+  BEGIN
+    UPDATE number_of_items SET count = (SELECT count (*) FROM itemlist);
 
 
 
