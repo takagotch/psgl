@@ -397,6 +397,12 @@ FETCH 6 IN pref;
 BEGIN;
 DECLARE pref CURSOR FOR SELECT * FROM prefecture ORDER BY id;
 
+FETCH FORWARD IN pref;
+
+FETCH FORWARD 6 IN pref;
+
+MOVE
+
 //
 
 //
