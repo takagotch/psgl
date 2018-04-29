@@ -411,13 +411,13 @@ COMMIT;
 CREATE TABLE number_of_item (count bigint);
 INSERT INTO number_of_items (count) SELECT count(*) FROM itemlist;
 CREATE FUNCTION count_number_of_item () RETURNS trigger AS
-$$
-  DECLARE
-  BEGIN
-    UPDATE number_of_items SET count = (SELECT count (*) FROM itemlist);
-    RETURN NULL;
-  END;
-$$
+  $$
+    DECLARE
+    BEGIN
+      UPDATE number_of_items SET count = (SELECT count (*) FROM itemlist);
+      RETURN NULL;
+    END;
+  $$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER update_number_of_item AFTER INSERT OF DELETE
@@ -429,8 +429,51 @@ INSERT INTO itemlist VALUES (4, 'book',2890, 85);
 
 SELECT * FROM number_of_items;
 
-CREATE TABLE itemlist_log ();
+CREATE TABLE itemlist_log (name test, old_price int, new_price int);
+CREATE FUNCTION insert_itemlist_log() RETURNS trigger AS
+  $$
+    DECLARE
+    BEGIN
+      INSERT INTO itemlist_log VALUES(NEW.name, OLD.price, NEW.price);
+      RETURN NULL;
+    END;
+  $$
+LANGUAGE plpgsql;
 
+CREATE TRIGGER itemlist_logging AFTER UPDATE
+  ON itemlist FOR EACH ROW
+    EXECUTE PROCEDURE insert_itemlist_log();
+
+SELECT * FROM itemlist_log();
+
+CREATE TABLE count_update (row int, statement int);
+INSERT INTO count_update VALUES (0, 0);
+CREATE FUNCTION count_update_row() RETURNS trigger AS
+  $$
+    DECLARE 
+    BEGIN
+      UPDATE count_update SET row = row + 1;
+      RETURN NULL;
+    END;
+  $$
+LANGUAGE plpgsql;
+
+CREATE FUNCTION count_update_statement() RETURNS trigger AS
+  $$
+    DECLARE
+    BEGIN
+      UPDATE count_update SET satement = statement + 1;
+      RETURN NULL;
+    END;
+  $$
+LANGUAGE plpgsql;
+
+UPDATE itemlist SET price = 120 WHERE id = 1;
+UPDATE itemlist SET price = floor(price * 1.1);
+SELECT * FROM count_update;
+
+ALTER TRIGGER companycode_check ON customerlist RENAME TO check_cc;
+DROP TRIGGER update_number_of_items ON itemlist;
 
 //
 
