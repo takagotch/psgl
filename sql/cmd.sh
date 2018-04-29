@@ -401,7 +401,7 @@ FETCH FORWARD IN pref;
 
 FETCH FORWARD 6 IN pref;
 
-MOVE
+MOVE BACKWARD 3 IN pref;
 
 //
 
