@@ -415,6 +415,16 @@ $$
   DECLARE
   BEGIN
     UPDATE number_of_items SET count = (SELECT count (*) FROM itemlist);
+    RETURN NULL;
+  END;
+$$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_number_of_item AFTER INSERT OF DELETE
+  ON itemlist FOR EACH ROW
+    EXECUTE PROCEDURE count_number_of_item ();
+
+SELECT * FROM number_of_items;
 
 
 
