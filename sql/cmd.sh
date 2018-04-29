@@ -507,6 +507,176 @@ SELECT nextval('seq_test');
 DROP SEQUENCE seq_setval;
 
 //CREATE VIEW, DROP VIEW
+CREATE VIEW mini_customerlist (id, customer_name)
+  AS SELECT id, name FROM customerlist;
+
+SELECT * FROM mini_customerlist WHERE id < 4;
+
+CREATE VIEW customer_view (id, name, companyname) 
+  AS SELECT a.id, a.name, b.company
+    FROM customerlist AS a, companylist AS b
+      WHERE a.company_view WHERE id < 4;
+SELECT * FROM customer_view WHERE id < 4;
+DROP VIEW mini_custoemrlist;
+\dv
+\d customer_view;
+
+//DROP INDEX
+DROP INDEX test_index;
+
+//ALTER INDEX
+\d customerlist
+ALTER INDEX name_idx RENAME TO customerlist_idx;
+\d customerlist
+
+//Bitmap Scan
+\d bm_test
+SELECT a,b FROM bm_test WHERE a = 900 AND b = 1804;
+SELECT a,b FROM bm_test WHERE a = 900 OR b = 1804;
+
+EXPLAIN SELECT a,b FROM bm_test WHERE a = 900  AND b = 1804;
+EXPLAIN SELECT a,b FROM bm_test WHERE a = 900 OR b = 1804;
+
+EXPLAIN SELECT a,b FROM bm_test WHERE a = 900 AND b = 1804;
+EXPAIN SELECT a,b FROM bm_test WHERE a = 900 OR b = 1804;
+
+SELECT a,b FROM bm_test WHERE a = 900 OR b = 1804;
+SET enable_bitmapscan TO false;
+SELECT a,b FROM bm_test WHERE a = 900 OR b = 1804;
+
+//B-TREE, GIST, R-TREE, HASH
+
+// CREATE INDEX
+CREATE INDEX idx ON table (a, b, c);
+
+CREATE INDEX name_idx ON customerlist (name);
+
+CREATE INDEX multicolumn_idx ON album_list;
+  USING BTREE (artist, title);
+\d album_list
+
+SELECT * FROM album_list WHERE artist = 'tky' AND title = 'AAA';
+SELECT * FROM album_list WHERE artist = 'takagotch' AND title = 'BBB';
+
+SELECT * FROM my_class WHERE id < 5;
+
+CREATE INDEX myclass_name_idx ON my_class (lower(name));
+\d my_class
+
+SELECT * FROM my_class WHERE lower(name) = 'tky';
+
+CREATE INDEX special_ids ON customerlist (id)
+  WHERE 50 <= id AND id < 100;
+
+//TRUNCATE
+SELECT * FROM itemlist;
+TRUNCATE itemlist;
+SELECT * FROM itemlist;
+
+//DELETE
+DELTE FROM itemlist;
+SELECT * FROM itemlist;
+DELETE FROM itemlist WHERE price < 100;
+SELECT * FROM itemlist;
+
+SELECT * FROM itemlist;
+SELECT * FROM makerlist;
+
+DELETE FROM itemlist
+  WHERE makercode IN
+    (SELECT id FROM makerlist WHERE name = 'TK.Inc');
+
+SELECT * FROM itemlist;
+
+//UPDATE
+SELECT name, price FROM itemlist;
+UPDATE itemlist SET price = 100;
+SELECT name, price FROM itemlist;
+
+UPDATE itemlist SET price = 100 WHERE price < 100  OR name = 'pen';
+SELECT name, price FROM itemlist;
+
+SELECT * FROM itemlist;
+SELECT * FROM makerlist;
+
+UPDATE itemlist SET price = price * 1.1
+  WHERE makercode IN
+  (SELECT id FROM makerlist WHERE name = 'TK.Inc');
+
+SELECT * FROM itemlist;
+
+UPDATE itemlist SET price = price * 1.1;
+  FROM makerlist
+    WHERE makerlist.id = itemlist.makercode
+    AND makerlist.name = 'TK.Inc';
+
+SELECT * FROM itemlist;
+
+//CASE
+SELECT * FROM itemlist;
+SELECT id, CASE WHEN name = 'notebook' THEN 'NOTE'
+                WHEN name = 'pen' THEN 'PEN'
+		WHEN name = 'eraser' THEN 'ERASER'
+		ELSE 'OTHER'
+	END AS itemname
+FROM itemlist;
+
+SELECT name, CASE WHEN price < 100 THEN floor(price * 0.9)
+  ELSE floor(price * 0.8)
+END AS TODAYPRICE
+FROM itemlist;
+
+//
+
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+
+//
+//
+
+
+
+//
+
+//
+
+//
+
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

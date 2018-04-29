@@ -8,8 +8,45 @@
 ###
 ###
 ###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+###
+### ALTER INDEX
+### DROP INDEX
 ### CREATE VIEW, DROP VIEW
-### 
+### CREATE SEQUENCE, ALTER SEQUENCE, DROP SEQUENCE
 ### CREATE TRIGGER, ALTER TRIGGER, DROP TRIGGER
 ### CURSOR
 ### DECLARE, CLOSE
