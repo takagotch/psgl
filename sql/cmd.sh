@@ -425,7 +425,11 @@ CREATE TRIGGER update_number_of_item AFTER INSERT OF DELETE
     EXECUTE PROCEDURE count_number_of_item ();
 
 SELECT * FROM number_of_items;
-INSERT INTO itemlist VALUES ();
+INSERT INTO itemlist VALUES (4, 'book',2890, 85);
+
+SELECT * FROM number_of_items;
+
+
 
 
 //
