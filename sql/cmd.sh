@@ -395,7 +395,7 @@ FETCH 6 IN pref;
 
 //CURSOR
 BEGIN;
-
+DECLARE pref CURSOR FOR SELECT * FROM prefecture ORDER BY id;
 
 //
 
