@@ -393,7 +393,9 @@ FETCH 6 IN pref;
 COMMIT;
 FETCH 6 IN pref;
 
-//
+//CURSOR
+BEGIN;
+
 
 //
 
