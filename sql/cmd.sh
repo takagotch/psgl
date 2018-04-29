@@ -429,7 +429,7 @@ INSERT INTO itemlist VALUES (4, 'book',2890, 85);
 
 SELECT * FROM number_of_items;
 
-CREATE
+CREATE TABLE itemlist_log ();
 
 
 //
