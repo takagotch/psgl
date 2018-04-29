@@ -425,7 +425,7 @@ CREATE TRIGGER update_number_of_item AFTER INSERT OF DELETE
     EXECUTE PROCEDURE count_number_of_item ();
 
 SELECT * FROM number_of_items;
-
+INSERT INTO
 
 
 //
