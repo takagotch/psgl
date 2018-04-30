@@ -627,10 +627,65 @@ END AS TODAYPRICE
 FROM itemlist;
 
 //sub_query
+SELECT * FROM table_1 WHERE
+  EXSIST (SELECT * FROM table_2 WHERE table_1.column = table_2.column);
+
 SELECT * FROM comic_list;
 
+SELECT * FROM author_list;
 
-//
+SELECT * FROM comic_list WHERE author_id
+  = (SELECT author_id FROM author_list WHERE name = 'tky');
+
+SELECT * FROM comic_list AS c
+  WHERE c.author_id IN (SELECT author_id FROM author_list);
+
+SELECT * FROM comic_list AS c
+  WHERE c.author_id NOT IN (SELECT author_id FROM author_list);
+
+SELECT * FROM comic_list AS c
+  WHERE EXSISTS (SELECT * FROM author_list WHERE c.author_id = author_id);
+
+SELECT title, name FROM (SELECT * FROM author_list) AS a,
+  comic_list AS c WHERE a.author_id = c.author_id;
+
+SELECT * FROM comic_list AS c
+  WHERE c.author_id = ANY (SELECT author_id FROM author_list);
+
+SELECT * FROM comic_list AS c
+  WHERE c.author_id <> ALL (SELECT author_id FROM author_list);
+
+//FOR UPDATE, FOR SHARE
+BEGIN;
+SELECT price FROM itemlist WHERE id = 1
+FOR UPDATE;
+UPDATE itemlist SET price = 140 WHERE id = 1;
+END;
+
+BEGIN;
+SELECT price FROM itemlist WHERE id = 1;
+DELETE FROM itemlist WHERE id = 1;
+END;
+
+BEGIN;
+SELECT price FROM SET price = 140 WHERE id = 1;
+COMMIT;
+
+BEGIN;
+SELECT price FROM itemlist WHERE id = 1;
+FOR SHARE;
+DELETE FROM itemlist WHERE id = 1;
+
+BEGIN;
+SELECT price FROM itemlist WHERE id = 1
+FOR SHARE;
+UPDATE itemlist SET price = 140 WHERE id = 1;
+COMMIT;
+
+BEGIN;
+SELECT price FROM itemlist WHERE id = 1;
+FOR SHARE;
+COMMIT;
 
 
 //
