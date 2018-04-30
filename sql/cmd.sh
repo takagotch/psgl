@@ -687,51 +687,152 @@ SELECT price FROM itemlist WHERE id = 1;
 FOR SHARE;
 COMMIT;
 
+//LIMIT, OFFSET
+SELECT * FROM customerlist;
+SELECT * FROM customerlist ORDER BY id OFFSET 2 LIMIT 3;
 
-//
+//ORDER BY
+SELECT * FROM customerlist WHERE id < 5 ORDER BY id;
+SELECT * FROM customerlist WHERE di < 5 ORDER BY id DESC;
+SELECT * FROM test_result ORDER BY (math + english + physics);
+SELECT * FROM customerlist WHERE id < 5 ORDER BY id USING >;
 
+//UNION, INTERSECT, EXCEPT
+SELECT * FROM english_club;
+SELECT * FROM footboll_club;
 
-//
+(SELECT name, grade AS "class" FROM english_club) UNION (SELECT name, class FROM football FROM footboll_club);
+(SELECT name, grade AS "class" FROM english_club) INTERSECT (SELECT name, class FROM footboll_club);
+(SELECT name, grade AS "class" FROM english_club) EXCEPT (SELECT name, class FROM footboll_club);
 
+//CROSS JOIN, JOIN
+SELECT * FROM comic_list;
+SELECT * FROM author_list;
 
-//
+SELECT * FROM comic_list CROSS JOIN author_list;
 
+SELECT title, name FROM comic_list NATURAL
+  INNNER JOIN author_list;
 
-//
+SELECT c.title, a.name FROM comic_list AS c INNER JOIN
+  author_list AS a ON (c.author_id = a.author_id);
 
+SELECT title, name FROM comic_list INNER JOIN author_list AS a
+  (author_id) USING (author_id);
 
-//
+SELECT title, name FROM comic_list AS c LEFT OUTER JOIN
+  author_list AS a ON (c.author_id = a.author_id);
 
+SELECT title, name FROM comic_list AS c RIGHT OUTER JOIN
+  author_list AS a ON (c.author_id = a.author_id);
 
-//
+SELECT title, name FROM comic_list AS c FULL OUTER JOIN
+  author_list AS a ON (c.author_id = a.author_id);
 
-//
+//DISTINT
+SELECT * FROM club_member;
+SELECT DISTINCT last_name FROM club_member;
 
-//
+SELECT DISTINCT first_name, last_name FROM club_member;
+SELECT DISTINCT ON (frist_name, last_name) * FROM club_member;
 
-//
+//GROUP BY, HAVING
+SELECT orderid AS "ordernumber", item_id AS "itemnumber", orders AS "orderamount"
+  FROM orderlist;
 
-//
+SELECT item_id AS "itemnumber", count(*) AS "numberoforder" FROM orderlist
+  GROUP BY item_id;
 
-//
+SELECT item_id AS "itemnumber", sum(orders) AS "totalorder" FROM orderlist
+  GROUP BY item_id;
 
-//
+SELECT * FROM test_result;
 
+SELECT sum(math + english + physics) AS "totalscore",
+  count(*) AS "numberofpeople" FROM test_result
+    GROUP BY math + english + phsics;
 
+SELECT round((math + english + physics)/3) AS "average",
+  count(*) AS "numberofpeople" FROM test_result
+    GROUP BY round((math + english + physics)/3);
 
-//
+SELECT item_id AS "itemnumber", count(*) AS "numberoforder" FROM orderlist
+  GROUP BY item_id HAVING 2 <= count(*) ;
 
-//
+//WHERE
+SELECT * FROM author_list WHERE 1 <= author_id AND author_id <= 3;
 
-//
+SELECT * FROM queen WHERE solo IS NULL;
 
-//
+SELECT * FROM queen WHERE name LIKE '%May';
 
-//
+SELECT * FROM author_list WHERE author_id BETWEEN 1 AND 3;
 
-//
+SELECT * FROM author_list WHERE author_id IN (1,3,5);
 
-//
+//FROM
+SELECT author.name, comic.title FROM
+  author_list AS author, comic_list AS comic
+    WHERE author.author_id = comic.author_id;
+
+//SELECT, sub_query,CASE
+
+//INSERT
+INSERT INTO customerlist (id, name, companycode)
+  VALUES (1, 'tky', 3);
+
+INSERT INTO customerlist VALUES (2, 'tky', 2);
+
+INSERT INTO new_customerlist (id, name, companycode)
+  SELECT id, name, companycode FROM customerlist WHERE id < 5;
+
+//REVOKE
+REVOKE SELECT, UPDATE ON companylist FROM webuser;
+SELECT has_table_privilege ('webuser', 'companylist', 'SELECT');
+SELECT has_table_privilege ('webuser', 'companylist', 'UPDATE');
+
+//GRANT
+GRANT USAGE ON SCHEMA postgres TO webuser;
+GRANT SELECT ON TABLE customerlist TO webuser;
+SELECT has_schema_privilege ('webuser', 'postgres', 'USAGE');
+SELECT has_table_privilege('webuser', 'customerlist', 'SELECT');
+
+GRANT CREATE ON DATABASE sampledb TO webuser;
+REVOKE ALL ON companylist FROM webuser;
+GRANT SELECT, UPDATE ON companylist TO webuser;
+
+GRANT SELECT ON test_table TO user1 WITH GRANT OPTION;
+\z test_table
+
+SELECT SESSION_USER;
+GRANT SELECT ON test_table TO user2;
+\z test_table
+
+//SET SESSION AUTHORIZATION
+SELECT CURRENT_USER;
+SET SESSION AUTHORIZATION webuser;
+SELECT CURRENT_USER;
+RESET SESSION AUTHORIZATION;
+
+//ALTER GROUP
+ALTER GROUP pcusers ADD USER pc03;
+ALTER GROUP pcusers DROP USER pc03;
+
+//DROP GROUP
+DROP GROUP pcusers;
+
+//CREATE GROUP
+CREATE GROUP pcusers WITH USER pc01, pc02;
+
+//ALTER USER
+ALTER USER webuser CREATEDB CREATEUSER;
+\dn webuser
+
+//DROP USER
+DROP USER webuser;
+
+//CREATE USER
+CREATE USER user_name CREATEUSER;
 
 //
 
