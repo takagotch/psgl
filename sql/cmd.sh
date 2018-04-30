@@ -626,7 +626,9 @@ SELECT name, CASE WHEN price < 100 THEN floor(price * 0.9)
 END AS TODAYPRICE
 FROM itemlist;
 
-//
+//sub_query
+SELECT * FROM comic_list;
+
 
 //
 
