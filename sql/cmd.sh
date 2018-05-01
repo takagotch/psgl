@@ -857,11 +857,14 @@ CREATE ROLE LOGIN PASSWORD 'pcgxr1f';
 CREATE ROLE webuser4 LOGIN PASSWORD 'pcgxr1f'
   VALID UNTIL '2018-04-24';
 
-//
+//ALTER TABLE
 
-//
+//ALTER TABLE OWNER
+\dt customerlist
+ALTER TABLE customerlist OWNER TO webuser;
+\dt customerlist
 
-//
+//ALTER
 
 
 //
