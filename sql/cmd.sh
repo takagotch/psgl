@@ -1020,6 +1020,15 @@ CREATE TABLE default_test (id int PRIMARY KEY,
 INSERT INTO default_test VALUES (1);
 SELECT * FROM default_test;
 
+CREATE TABLE member_list (id integer PRIMARY KEY,
+		user_name text UNIQUE,
+		passwd test NOT NULL);
+CREATE TABLE member_list (id integer PRIMARY KEY,
+		user_name text,
+		passwd text NOT NULL,
+		UNIQUE (user_name));
+
+INSERT INTO
 
 //DROP DATABASE
 DROP DATABASE sampledb;
