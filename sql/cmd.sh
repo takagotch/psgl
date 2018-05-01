@@ -864,7 +864,15 @@ CREATE ROLE webuser4 LOGIN PASSWORD 'pcgxr1f'
 ALTER TABLE customerlist OWNER TO webuser;
 \dt customerlist
 
-//ALTER TABLE ADD CONSTRAINT,
+//ALTER TABLE ADD CONSTRAINT, ALTER TABLE DROP CONSTRAINT, ALTER TABLE ADD PRIMARY KEY
+ALTER TABLE customerlist
+  ADD CONSTRAINT customerlist_counter_check CHECK(counter < 999);
+\d customerlist
+
+ALTER TABLE customerlist
+  DROP CONSTRAINT customerlist_counter_check;
+\d customerlist
+
 
 
 //
