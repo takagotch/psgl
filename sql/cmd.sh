@@ -946,10 +946,26 @@ ALTER SCHEMA my_schema RENAME TO new_schema;
 DROP SCHEMA sample_schema;
 DROP SCHEMA your_schema CASCADE;
 
-//
+//ALTER DOMAIN
+CREATE DOMAIN item_price AS integer;
+\dn item_price
+ALTER DOMAIN item_price SET DEFAULT 100;
+\dD item_price
+ALTER DOMAIN item_price SET NOT NULL;
+ALTER DOMAIN item_price ADD CONSTRAINT upper_limit
+  CHECK (VALUE < 1000);
+\d item_price
 
+//CREATE DOMAIN, DROP DOMAIN
+CREATE DOMAIN item_price AS integer DEFAULT 100 NOT NULL;
+CREATE TABLE apple (id integer, price item_price);
+CREATE TABLE banana (id integer, price item_price);
 
-//
+CREATE DOMAIN item_price AS integer DEFAULT 100
+  CONSTRAINT upper_limit CHECK(VALUE < 10000) NOT NULL;
+\dD
+CREATE TABLE orange (id integer, price item_price);
+
 
 //
 
