@@ -864,7 +864,7 @@ CREATE ROLE webuser4 LOGIN PASSWORD 'pcgxr1f'
 ALTER TABLE customerlist OWNER TO webuser;
 \dt customerlist
 
-//ALTER
+//ALTER TABLE ADD CONSTRAINT,
 
 
 //
