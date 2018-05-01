@@ -1028,7 +1028,8 @@ CREATE TABLE member_list (id integer PRIMARY KEY,
 		passwd text NOT NULL,
 		UNIQUE (user_name));
 
-INSERT INTO
+INSERT INTO member_list VALUES ();
+INSERT INTO member_list VALUES ();
 
 //DROP DATABASE
 DROP DATABASE sampledb;
