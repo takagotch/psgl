@@ -924,7 +924,11 @@ SHOW search_path;
 GRANT USAGE ON SCHEMA my_schema TO webuser;
 GRANT SELECT ON TABLE sample_table TO webuser;
 
-//CREATE SHCEMA, DROP SCHEMA, 
+//CREATE SHCEMA, DROP SCHEMA, ALTER SCHEMA
+CREATE SCHEMA my_schema;
+CREATE TABLE my_schema.sample_table (id integer, data text);
+SELECT * FROM current_schema();
+
 
 
 //
