@@ -879,8 +879,8 @@ ALTER TABLE plain_table ADD PRIMARY KEY (id);
 ALTER plain_table DROP CONSTRAINT plain_table_pkey;
 \d plain_table
 
+//ALTER TABLE RENAME TO
 
-//
 
 //
 
