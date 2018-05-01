@@ -929,7 +929,22 @@ CREATE SCHEMA my_schema;
 CREATE TABLE my_schema.sample_table (id integer, data text);
 SELECT * FROM current_schema();
 
+INSERT my_schema.sample_table
+  VALUES (1, 'test');
+SELECT * FROM my_schema.sample_table;
 
+CREATE SCHEMA your_schema
+CREATE TABLE your_table (id integer, data text);
+\d your_schema.your_table
+
+CREATE SCHEMA webusers_schema AUTHORIZATION webuser;
+
+\dn *schema
+ALTER SCHEMA my_schema RENAME TO new_schema;
+\dn * schema
+
+DROP SCHEMA sample_schema;
+DROP SCHEMA your_schema CASCADE;
 
 //
 
