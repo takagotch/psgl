@@ -965,7 +965,14 @@ CREATE DOMAIN item_price AS integer DEFAULT 100
   CONSTRAINT upper_limit CHECK(VALUE < 10000) NOT NULL;
 \dD
 CREATE TABLE orange (id integer, price item_price);
+INSERT INTO orange VALUES (1, 200);
+INSERT INTO orange VALUES (1, 9999);
 
+DROP DOMAIN domain_test;
+\d apple
+DROP DOMAIN item_price CASCADE;
+\d apple
+\d banana
 
 //
 
