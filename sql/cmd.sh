@@ -1033,16 +1033,86 @@ INSERT INTO member_list VALUES (2, 'tky', '');
 
 CREATE TABLE wine_club (naem text PRIMARY KEY,
 		age integer CHECK(25 <= age));
+CREATE TABLE sumo_wrestler (name text,
+		height integer, weight integer,
+		CONSTRAINT examination CHECK(180 <= AND 100 <= weight));
 
+CREATE TABLE pkeyexample (id integer PRIMARY KEY,
+		data integer NOT NULL);
+CREATE TABLE album_list (artist text, title text, year integer,
+		PRIMARY KEY (artist, title));
+
+CREATE TABLE customerlist_withReferences (id integer PRIMARY KEY,
+		name text NOT NULL,
+		c_code integerREFERENCES companylist (companycode));
+INSERT INTO customerlist_withReferences VALUES (1, 'tky', 5);
+INSERT INTO customerlist_withReferences VALUES (10, 'takagotch', 100);
+CREATE TABLE customerlist_withForeignKey (id integer PRIMARY KEY,
+		name text NOT NULL,
+		c_code integer,
+		  CONSTRAINT customerlist_fkey
+		  FOREIGN KEY (c_code) REFERENCES companylist (companycode));
+DELETE FROM companylist WHERE companycode = 5;
+DELETE FROM companylist WHERE companycode = 6;
+CREATE TABLE customerlist_withReferences_OnDeleteCascode (
+		id integer PRIMARY KEY,
+		name text NOT KEY,
+		  c_code integer REFERENCES companylist (companycode)
+		  ON DELETE CASCADE);
+INSERT INTO customerlist_withReferences_OnDeleteCascade
+		VALUES (3, 'tky', 4);
+SELECT * FROM customerlist_withReferences_OnDeleteCascade;
+DELETE FROM companylist WHERE companycode = 4;
+DELETE FROM comapnylist WHERE companycode = 4;
+SELECT * FROM customerlist_withReferences_OnDeleteCascade;
+
+CREATE TABLE base (data1 int, data2 text,
+		CONSTRAINT base_uq
+			UNIQUE (data1, data2));
+INSERT INTO base VALUES (1, 'one');
+INSERT INTO base VALUES (1, 'two');
+INSERT INTO base VALUES (3, 'three');
+SELECT * FROM base;
+
+CREATE TABLE match_simple(d1 int, d2 text,
+		CONSTRAINT simple_fkey
+		FOREIGN KEY (d1, d2) REFERENCES base (data1, data2) MATCH SIMPLE);
+INSERT INTO match_simple VALUES (1, 'one');
+INSERT INTO match_simple VALUES (2, 'two');
+INSERT INTO match_simple VALUES (NULL, NULL);
+
+CREATE TABLE match_full(d1 int, d2 text,
+		CONSTRAINT full_key
+		FOREIGN KEY (d1, d2) REFERENCES base (data1, data2) MATCH FULL);
+INSERT INTO match_full VALUES (1, 'one');
+INSERT INTO match_full VALUES (2, 'two');
+INSERT INTO match_full VALUES (NULL, NULL);
+
+\d customerlist
+CREATE TABLE customerlist_exluding_default
+  (new_id int, LIKE customerlist);
+
+\d customerlist_excluding_default
+CREATE TABLE customerlist_including_default
+  (new_id int, LIKE customerlist INCLUDING DEFAULTS);
+\d customerlist_including_default
 
 //DROP DATABASE
 DROP DATABASE sampledb;
 
 //ALTER DATABASE
+ALTER DATABASE sampledb SET enable_indexscan TO off;
 
-//
+//CREATE DATABASE
+CREATE DATABASE sampledb;
+CREATE DATABASE sampledb WITH ENCODING = 'EUC_JP';
 
-//
+-U owner1 customer -q
+CREATE DATABASE my_db WITH OWNER = owner2;
+\du owner2
+CREATE DATABASE new_tablespacedb TABLESPACE dbspace;
+
+//ALTER TABLESPACE
 
 //
 
