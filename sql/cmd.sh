@@ -995,13 +995,36 @@ CREATE TABLE public.new_companylist (address text) INHERITS (companylist);
 CREATE TABLE customer_company_list () INHERITS (customerlist, companylist);
 CREATE TABLE ex_memberlist (job text) INHERITS (memberlist);
 SELECT * FROM memberlist;
+SELECT * FROM ex_memberlist;
+
+INSERT INTO ex_memberlist VALUES ('str', 'str', 'str');
+SELECT * FROM ex_memberlist;
+SELECT * FROM memberlist;
+
+SELECT * FROM ONLY memberlist;
+DELETE FROM ONLY memberlist WHERE team = 'dramas';
+SELECT * FROM memberlist;
+
+UPDATE ONLY memberlist SET name = name || 'member';
+SELECT * FROM memberlist;
+
+ALTER TABLE memberlist RENAME name TO member;
+\d memberlist
+\d ex_memberlist
+
+//CREATE TABLE
+CREATE TABLE default_test (id int PRIMARY KEY,
+	regist_datatime timestamp DEFAULT current_timestamp, 
+	data integer DEFAULT 0);
+\d default_test
+INSERT INTO default_test VALUES (1);
+SELECT * FROM default_test;
 
 
-//
+//DROP DATABASE
+DROP DATABASE sampledb;
 
-//
-
-//
+//ALTER DATABASE
 
 //
 
