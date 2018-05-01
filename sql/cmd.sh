@@ -924,7 +924,7 @@ SHOW search_path;
 GRANT USAGE ON SCHEMA my_schema TO webuser;
 GRANT SELECT ON TABLE sample_table TO webuser;
 
-//CREATE SHCEMA,
+//CREATE SHCEMA, DROP SCHEMA, 
 
 
 //
