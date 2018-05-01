@@ -1113,50 +1113,18 @@ CREATE DATABASE my_db WITH OWNER = owner2;
 CREATE DATABASE new_tablespacedb TABLESPACE dbspace;
 
 //ALTER TABLESPACE
+ALTER TABLESPACE dbspace RENAME TO new_space;
+\db
 
-//
+//DROP TABLESPACE
 
-//
+//CREATE TABLESPACE
 
-//
+//SQL
+UPDATE FROM sample_tb1 SET data = data + $1;
+UPDATE FROM Sample_TBL SET data = data + $1;
+UPDATE FROM "Sample_TEL" SET data = data + $1;
 
-//
-
-
-//
-
-//
-
-//
-
-//
-
-//
-
-//
-
-
-
-
-
-//
-
-//
-
-//
-
-//
-//
-
-
-
-//
-
-//
-
-//
-
-//
 
 
 
