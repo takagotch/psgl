@@ -880,7 +880,10 @@ ALTER plain_table DROP CONSTRAINT plain_table_pkey;
 \d plain_table
 
 //ALTER TABLE RENAME TO
-
+\d customerlist
+ALTER TABLE customerlist RENAME COLUMN access_count TO counter;
+\d customerlist
+ALTER TABLE temp_table RENAME TO sample_table;
 
 //
 
