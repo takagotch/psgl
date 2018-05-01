@@ -974,11 +974,28 @@ DROP DOMAIN item_price CASCADE;
 \d apple
 \d banana
 
-//
+//DROP TABLE
+DROP TABLE customerlist;
+DROP TABLE customerlist CASCADE;
 
-//
+//CREATE TABLE AS
+\d customerlist
+CREATE TABLE new_customerlist AS SELECT * FROM customerlist;
+\d new_customerlist
 
-//
+CREATE TABLE partial_customerlist (id, name)
+  AS SELECT id, name FROM customerlist;
+SELECT * FROM partial_customerlist;
+
+//OBJ
+CREATE TABLE new_customerlist () INHERITS (customerlist);
+CREATE TABLE public.new_companylist (address text) INHERITS (companylist);
+\d new_companylist
+
+CREATE TABLE customer_company_list () INHERITS (customerlist, companylist);
+CREATE TABLE ex_memberlist (job text) INHERITS (memberlist);
+SELECT * FROM memberlist;
+
 
 //
 
