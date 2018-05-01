@@ -843,8 +843,11 @@ VALID UNTIL '2018-03-21';
 //ALTER ROLE
 
 
+//DROP ROLE
+DROP ROLE web1, web2, web3;
+
 //
-//
+
 
 //
 
