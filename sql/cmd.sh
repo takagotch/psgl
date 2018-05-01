@@ -885,17 +885,46 @@ ALTER TABLE customerlist RENAME COLUMN access_count TO counter;
 \d customerlist
 ALTER TABLE temp_table RENAME TO sample_table;
 
-//
+//ALTER TABLE ALTER
+\dC
+ALTER TABLE my_class ALTER age SET DEFAULT 25;
+\d my_class
 
+INSERT INTO my_class (id, name) VALUES (4, 'tky');
+SELECT * FROM my_class;
 
-//
+ALTER TABLE my_class ALTER name SET NOT NULL;
 
-//
+//ALTER TABLE ADD COLUMN,ALTER TABLE DROP COLUMN
+\d customerlist
+ALTER TABLE customerlist ADD COLUMN access_count integer;
+\d customerlist
 
+ALTER TABLE customerlist DROP COLUMN access_count;
+\d customerlist
 
-//
+ALTER TABLE customerlist ADD access_count integer
+  CHECK (access_count < 10);
+\d customerlist
 
-//
+//ALTER TABLE
+
+//SCHEMA
+CREATE TABLE my_schema.my_table (note text, date date)
+SELECT * FROM my_schema.sample_table;
+
+SELECT current_schema();
+SELECT current_schemas(true);
+
+\d
+SHOW search_path;
+SET search_path = postgres.public.my_schema;
+SHOW search_path;
+\d
+GRANT USAGE ON SCHEMA my_schema TO webuser;
+GRANT SELECT ON TABLE sample_table TO webuser;
+
+//CREATE SHCEMA,
 
 
 //
