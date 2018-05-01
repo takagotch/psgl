@@ -873,6 +873,11 @@ ALTER TABLE customerlist
   DROP CONSTRAINT customerlist_counter_check;
 \d customerlist
 
+\d plain_table
+ALTER TABLE plain_table ADD PRIMARY KEY (id);
+\d plain_table
+ALTER plain_table DROP CONSTRAINT plain_table_pkey;
+\d plain_table
 
 
 //
