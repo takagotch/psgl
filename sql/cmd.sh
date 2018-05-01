@@ -1028,8 +1028,10 @@ CREATE TABLE member_list (id integer PRIMARY KEY,
 		passwd text NOT NULL,
 		UNIQUE (user_name));
 
-INSERT INTO member_list VALUES (1, '', '');
+INSERT INTO member_list VALUES (1, 'tky', 'xxx');
 INSERT INTO member_list VALUES (2, 'tky', '');
+
+CREATE TABLE wine_club ();
 
 //DROP DATABASE
 DROP DATABASE sampledb;
