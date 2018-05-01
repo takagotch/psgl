@@ -838,10 +838,9 @@ CREATE USER webuser3 WITH PAPPWORD 'pcgxr1f';
 CREATE USER webuser4 WITH PASSWORD 'pcgxr1f'
 VALID UNTIL '2018-03-21';
 
-//
+//SET ROLE
 
-
-//
+//ALTER ROLE
 
 
 //
