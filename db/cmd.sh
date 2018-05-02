@@ -104,10 +104,21 @@ SELECT * FROM pg_tablespace;
 pwd
 ls
 
+CREATE TABLE new_table (id int, name text) TABLESPACE new_space;
+\d new_table
+ls
+CREATE DATABASE new_db TABLESPACE new_space;
+ls
 
+ALTER TABLESPACE new_space RENAME TO dbspace;
+\db
 
+DROP DATABASE new_db;
+DROP TABLE new_table;
+DROP TABLESPACE dbspace;
 
-//
+//VACUUM
+
 
 
 //
