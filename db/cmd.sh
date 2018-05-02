@@ -118,8 +118,20 @@ DROP TABLE new_table;
 DROP TABLESPACE dbspace;
 
 //VACUUM
+contab -u postgres -e
 
+05 4 * * * /usr/local/pgsql/bin/vacuumdb -a -z
+30 1 5, 15,25 * * /usr/local/pgsql/bin/vacuum -a -z
+30 3 1-3 * 1 /usr/local/pgsql/bin/vacuumdb -a -z
 
+man 1 crontab
+man 5 crontab
+
+//vacuumdb
+vacuumdb -d sampledb
+vacuumdb -a
+vacuumdb -a -z
+vacuumdb -d sampledb -f
 
 //
 
