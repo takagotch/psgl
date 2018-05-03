@@ -218,7 +218,82 @@ psql -q -U postgres sampledb
 CREATE ROLE role1 LOGIN;
 \du role*
 
+ALTER ROLE role1 CREATEROLE CREATEDB;
+\du role*
 
+SELECT SESSION_USER;
+SELECT count(*) FROM postgres_table;
+SELECT has_table_privilege('role1', 'postgres_table', 'select');
+SELECT SESSION_USER;
+GRANT SELECT, UPDATE ON TABLE postgres_table TO role1 WITH GRANT OPTION;
+SELECT SESSION_USER;
+SELECT count(*) FROM postgresql_table;
+
+GRANT SELECT ON TABLE postgres_table TO role2;
+\z postgres_table
+
+REVOKE UPDATE ON TABLE postgres_table FROM role1;
+\z postgres_table
+REVOKE SELECT ON TABLE postgres_table FROM role1;
+REVOKE SELECT ON TABLE postgres_table FROM role1 CASCADE;
+\z postgres_table
+
+CREATE ROLE role_a LOGIN INHERIT;
+CREATE ROLE role_b LOGIN NOINHERIT IN ROLE role_a;
+CREATE ROLE role_c LOGIN INHERIT IN ROLE role_a;
+CREATE ROLE role_d LOGIN INHERIT IN ROLE role_b;, role_c;
+\du role_*
+
+CREATE ROLE role_a LOGIN INHERIT;
+CREATE ROLE role_b LOGIN NOINHERIT;
+CREATE ROLE role_c LOGIN INHERIT;
+CREATE ROLE role_d LOGIN INHERIT;
+GRANT role_a TO role_b;
+GRANT role_a TO role_c;
+GRANT role_b, role_c TO role_d;
+
+CREATE TABLE table_a (id int);
+GRANT ALL PRIVILEGES ON table_a TO role_a;
+CREATE TABLE table_b (id int);
+GRANT ALL PRIVILEGES ON table_b TO role_b;
+GREATE TABLE table_c (id int);
+GRANT ALL PRIVILEGES ON table_c TO role_d;
+
+SELECT SESSION_USER;
+SELECT has_table_privilege('role_a', 'table_a', 'select') AS table_a,
+SELECT has_table_privilege('role_b', 'table_b', 'select') AS table_b,
+SELECT has_table_privilege('role_c', 'table_c', 'select') AS table_c;
+
+SELECT SESSION_USER;
+SELECT has_table_privilege('role_c', 'table_a', 'select') AS table_a,
+       has_table_privilege('role_c', 'table_b', 'select') AS table_b,
+       has_table_privilege('role_c', 'table_c', 'select') AS table_c;
+
+SELECT has_table_privilege('role_d', 'table_a', 'select') AS table_a,
+       has_table_privilege('role_d', 'table_b', 'select') AS table_b,
+       has_table_privilege('role_d', 'table_c', 'select') AS talbe_c;
+
+CREATE ROLE role_1 LOGIN INHERIT;
+CREATE ROLE role_2 LOGIN CREATEDB INHERIT ROLE role_1;
+\du role_1
+\du role_2
+
+psql -q -U role_1 sampledb
+SELECT SESSION_USER, CURRENT_USER;
+CREATE DATABASE test;
+
+SET ROLE role_2;
+SELECT SESSION_USER, CURRENT_USER;
+CREATE DATABASE test;
+
+RESET ROLE;
+SELECT SESSSION_USER, CURRENT_USER;
+DROP ROLE role_1;
+DROP ROLE role_2;
+
+//permission
+SELECT username, usercreatedb, usesuper, passwd
+	FROM pg_user WHERE usename LIKE 'testusr';
 
 
 
