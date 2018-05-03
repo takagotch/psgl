@@ -133,6 +133,47 @@ vacuumdb -a
 vacuumdb -a -z
 vacuumdb -d sampledb -f
 
+//lang
+createdb -E EUC_JP sampledb
+SET client_encoding TO 'SJIS';
+
+SHOW client_encoding;
+SELECT * FROM customerlist WHERE id < 4;
+SET client_encoding TO 'SJIS';
+SHOW client_encoding;
+SELECT * FROM customerlist WHERE id < 4;
+
+SET client_encoding TO 'SJIS';
+SET client_encoding TO 'SJIS'
+\encoding SJIS
+
+//VERSION/PLATFORM COMPATIBILITY
+
+//LOCK MANAGEMENT
+
+//CLIENT CONNECTION DEFAULTS
+
+//AUTOVACUUM PARAMETERS
+
+//RUNTIME STATISTICS
+
+//ERROR REPORTING AND LOGGING
+ls /usr/local/pgsql/data/pg_log/
+
+//QUERY TUNNING
+SET enable_seqscan TO false; 
+
+//WRITE AHEAD LOG
+
+//RESOURCE USAGE
+
+//CONNECTIONS AND AUTHENTICATION
+
+//FILE LOCATIONS
+ps ax | grep postmaster | grep -v grep
+cat /usr/local/pgsql/data/pid.data
+cat /usr/local/pgsql/data/postmaster.pid
+
 //
 
 
