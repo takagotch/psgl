@@ -174,7 +174,51 @@ ps ax | grep postmaster | grep -v grep
 cat /usr/local/pgsql/data/pid.data
 cat /usr/local/pgsql/data/postmaster.pid
 
-//
+//DB USR
+CREATE USER user1;
+\du
+
+ALTER USER user1 CREATEDB;
+\du user1
+
+SELECT SESSION_USER;
+SELECT count(*) FROM postgresql_table;
+SELECT has_table_privilege('user1', 'postgresql_table', 'select');
+
+GRANT SELECT, UPDATE ON TABLE postgresql_table TO user1 WITH GRANT OPTION;
+SELECT SESSION_USER;
+SELECT count(*) FROM postgres_table;
+
+GRANT SELECT ON TABLE postgres_table TO user2;
+\z postgres_table
+SELECT SESSION_USER;
+REVOKE UPDATE OR TABLE postgres_table FROM user1;
+\z postgres_table
+REVOKE SELECT ON TABLE postgres_table FROM user1;
+REVOKE SELECT ON TABLE postgres_table FROM user1 CASCADE;
+\z
+
+CREATE GROUP group1 WITH USER user1, user2;
+\dg
+\du user*
+CREATE TABLE table_1 (id int);
+GRANT ALL PRIVILEGES ON table_1 TO user1;
+\z table_1
+
+SELECT SESSION_USER;
+SELECT count(*) FROM table_1;
+GRANT ALL PRIVILEGES ON table_1 TO GROUP group1;
+\z table_1
+SELECT SESSION_USER;
+SELECT count(*) FROM table_1;
+DROP USER user1;
+
+//DB roll
+psql -q -U postgres sampledb
+CREATE ROLE role1 LOGIN;
+\du role*
+
+
 
 
 
