@@ -294,6 +294,63 @@ DROP ROLE role_2;
 //permission
 SELECT username, usercreatedb, usesuper, passwd
 	FROM pg_user WHERE usename LIKE 'testusr';
+SELECT rolename, rolesuper, rolinherit, rolecreaterole,
+	rolecreatedb, rolcanlogin, rolcannlimit
+	  FROM pg_role WHERE rolename LIKE 'testrole';
+ALTER USER user_name CREATEUSER;
+ALTER ROLE role_name SUPERUSER;
+\du postgres
+\z postgres_table
+SELECT has_table_privilege('role1', 'postgres_table', 'select');
 
+//pswd
+ALTER USER webuser3 WITH ENCRYPTED PASSWORD 'xxxx';
+ALTER ROLE webuser3 WITH ENCRYPTED PASSWORD 'xxxx';
+SELECT usename, passwd FROM pg_shadow WHERE usename = 'webuser3';
+SELECT rolname, rolpassword FROM pg_authid WHERE rolname = 'webuser3';
 
+//client
+listen_addresses = 'localhost,192.168.1.10'
+tcpip_soket = true
+
+//db create
+createdb -E EUC_JP -U postgres sampledb
+createdb -h dbms.server.net -E EUC_JP -U postgres sampledb
+drop -U postgres sampledb
+
+// contrib/start-scripts
+whoami
+cp /usr/local/src/postgresql/postgresql-8.1.4/contrib/start-scripts/linux \
+/etc/rc.d/init.d/postgresql
+chmod 755 /etc/rc.d/init.d/postgresql
+/sbin/chkconfig --add postgresql
+/sbin/chkconfig postgresql on
+
+whoami
+cp /usr/local/src/postgresql/postgresql-8.1.4/start-scripts/freebsd \
+/usr/local/etc/rc.d/postgresql
+chmod 755 /usr/local/etc/rc.d/postgresql
+
+//pg_ctl stop
+pg_ctl stop -D /usr/local/pgsql/data
+pg_ctl stop -D /usr/local/pgsql/data -m fast
+pg_ctl stop -D /usr/local/pgsql/data
+pg_ctl stop -W -D /usr/local/pgsql/data
+
+//pg_ctl start
+pg_ctl start -D /usr/local/pgsql/data -l /var/log/postgres/postgresql.log
+cat /var/log/postgres/postgresql.log
+
+//pg_ctl
+pg_ctl status -D /usr/local/pssql/data
+
+//initdb
+initdb --no-locale -D /usr/local/pgsql/data
+
+//
+initdb --no-locale -D /usr/local/pgsql/data
+pg_ctl start -D /usr/local/pgsql/data
+createdb -E EUC_JP sampledb
+createdb -E EUC_JP sampledb
+psql -U postgres sampledb
 
