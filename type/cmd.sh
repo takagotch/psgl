@@ -141,6 +141,30 @@ SELECT name, text_array[][] FROM array_test;
 SELECT name, array_dims(0, array_dims()
   FROM array_test;
 
+SELECT * FROM customerlist WHERE companycode < 3 AND id < 6;
+SELECT * FROM customerlist WHERE companycode > 5 OR name LIKE '%tky';
+SELECT * FROM customerlist WHERE NOT companycode < 5;
+
+SELECT integer '' < integer '';
+SELECT B'' < B'';
+
+SELECT * FROM my_class WHERE age IS NULL;
+SELECT * FROM my_class WHERE age IS NOT NULL;
+
+SELECT (integer '' < integer '') IS NULL;
+SELECT (B'' < B'') IS NOT TRUE;
+
+SELECT integer '' + smallint'';
+SELECT integer '' + decimal'';
+
+SELECT date '' ~ date '';
+SELECT date '' ~ time '';
+SELECT date '' ~ interval '';
+
+SELECT date '' ~ date '';
+SELECT date '' ~ time '';
+SELECT date '' ~ interval '';
+
 
 
 
