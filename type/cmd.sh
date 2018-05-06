@@ -93,6 +93,16 @@ INSERT INTO box_sample VALUES ();
 INSERT INTO box_sample VALUES ();
 INSERT INTO close_path_sample VALUES ();
 INSERT INTO close_path_sample VALUES ();
+INSERT INTO close_path_sample VALUES ();
+INSERT INTO close_path_sample VALUES ();
+INSERT INTO polygon_sample VALUES ();
+INSERT INTO polygon_sample VALUES ();
+INSERT INTO polygon_sample VALUES ();
+INSERT INTO polygon_sample VALUES ();
+INSERT INTO circle_sample VALUES ();
+INSERT INTO circle_sample VALUES ();
+INSERT INTO circle_sample VALUES ();
+
 
 
 
