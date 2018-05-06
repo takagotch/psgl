@@ -106,6 +106,13 @@ INSERT INTO circle_sample VALUES ();
 SELECT cidr '';
 SELECT cidr '';
 SELECT cidr '';
+SELECT cidr '';
+
+SELECT inet '';
+SELECT inet '';
+SELECT inet '';
+
+SELECT macaddr '';
 
 
 
