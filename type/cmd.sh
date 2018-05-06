@@ -165,8 +165,76 @@ SELECT date '' ~ date '';
 SELECT date '' ~ time '';
 SELECT date '' ~ interval '';
 
+SELECT point '' + point'()';
+SELECT point '' + point'';
+SELECT point'';
+
+SELECT box'' ?# box'';
 
 
+SELECT sin();
+SELECT sin();
+
+SELECT char_length(), octet_length();
+SELECT char_length(), octet_length();
+
+SELECT trim();
+
+SELECT trim();
+SELECT trim();
+
+SELECT trim();
+
+SELECT lpad();
+SELECT rpad();
+
+SELECT lpad();
+SELECT translate();
+SELECT translate();
+SELECT translate();
+
+SELECT current_date;
+SELECT current_time;
+current_trimstamp;
+SELECT now();
+SELECT timeofday();
+SELECT age(age '');
+SELECT age();
+SELECT age();
+
+SELECT extract();
+SELECT extract();
+SELECT date_part();
+SELECT date_part();
+SELECT date_trunc('', timestamp '');
+SELECT date_trunc('', timestamp '');
+SELECT date_trunc('', timestamp '');
+
+
+
+SELECT '':text, ''::bytes;
+
+SELECT current_schemas(true);
+SELECT current_schemas(false);
+\dn
+
+SELECT current_user;
+\z companylist
+SELECT has_table_privilege('customerlist', 'SELECT');
+SELECT has_table_privilege('webuser3', 'customerlist', 'SELECT');
+
+SELECT pg_column_size('str');
+SELECT pg_column_size('test');
+
+SELECT pg_tablespace_size('pg_global');
+SELECT pg_database_size('sampledb');
+SELECT pg_size_partty(pg_database_size('sampledb'));
+
+
+SELECT pg_relation_size('test');
+SELECT pg_size_pretty(pg_relation_size('test'));
+SELECT pg_total_relation_size('test');
+SELECT pg_size_pretty(pg_total_relation_size('test'));
 
 
 
