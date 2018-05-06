@@ -126,6 +126,16 @@ SELECT * FROM bit_sample;
 SELECT ''::bytes;
 SELECT ''::bytes;
 
+CREATE TABLE bytea_test (bin_data byte);
+INSERT INTO bytes_test VALUES ();
+INSERT INTO bytes_test VALUES ();
+SELECT * FROM bytes_test;
+
+
+SELECT * FROM array_test;
+SELECT * FROM array_test WHERE text_array[][] = '';
+
+
 
 
 
