@@ -1,0 +1,7 @@
+echo 671208864 > /proc/sys/kernel/shmax
+
+echo 250 35000 32 256 > /proc/sys/kernel/sem
+
+echo 24576 > /proc/sys/fs/file-max
+
+
