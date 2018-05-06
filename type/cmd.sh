@@ -22,4 +22,21 @@ INSERT INTO char_sample VALUES
 SELECT char_data,varchar_data FROM char_sample;
 SELECT text_data FROM cahr_sample;
 
+SELECT time (0) 'NOW';
+SELECT time (1) 'NOW';
+SELECT time (2) 'NOW';
+
+SELECT timestamp (0) 'NOW';
+SELECT timestamp (1) 'NOW';
+SELECT timestamp (2) 'NOW';
+
+CREATE TABLE data_sample (id integer, data_sample date);
+INSERT INTO data_sample VALUES (0, '2018-11-01');
+INSERT INTO data_sample VALUES (1, 'November 4, 2017');
+INSERT INTO data_sample VALUES (2, '11/4/2018');
+INSERT INTO data_sample VALUES (3, '20181104');
+SELECT id, data_sample AS "date" FROM date_sample;
+
+CREATE TABLE data_const_sample ();
+
 
