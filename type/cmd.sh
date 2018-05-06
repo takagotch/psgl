@@ -86,6 +86,14 @@ INSERT INTO boolean_sample VALUES (7, NULL);
 INSERT INTO point_sample VALUES ();
 INSERT INTO point_sample VALUES ();
 INSERT INTO lseg_sample VALUES ();
+INSERT INTO lseg_sample VALUES ();
+INSERT INTO lseg_sample VALUES ();
+INSERT INTO box_sample VALUES ();
+INSERT INTO box_sample VALUES ();
+INSERT INTO box_sample VALUES ();
+INSERT INTO close_path_sample VALUES ();
+INSERT INTO close_path_sample VALUES ();
+
 
 
 
