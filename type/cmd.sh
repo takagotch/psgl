@@ -123,6 +123,10 @@ INSERT INTO bit_sample VALUES ();
 INSERT INTO bit_sample VALUES ();
 SELECT * FROM bit_sample;
 
+SELECT ''::bytes;
+SELECT ''::bytes;
+
+
 
 
 
