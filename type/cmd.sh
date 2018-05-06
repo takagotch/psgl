@@ -113,7 +113,15 @@ SELECT inet '';
 SELECT inet '';
 
 SELECT macaddr '';
+SELECT macaddr '';
+SELECT macaddr '';
+SELECT macaddr '';
 
+
+CREATE TABLE bit_sample ();
+INSERT INTO bit_sample VALUES ();
+INSERT INTO bit_sample VALUES ();
+SELECT * FROM bit_sample;
 
 
 
