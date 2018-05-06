@@ -103,6 +103,9 @@ INSERT INTO circle_sample VALUES ();
 INSERT INTO circle_sample VALUES ();
 INSERT INTO circle_sample VALUES ();
 
+SELECT cidr '';
+SELECT cidr '';
+SELECT cidr '';
 
 
 
