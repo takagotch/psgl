@@ -46,4 +46,9 @@ SELECT * FROM item_names();
 SELECT * FROM itemlist;
 
 
+SELECT CURRENT_ROLE;
+SELECT count_rows('orderlist');
+SELECT count_rows('itemlist');
+
+
 
