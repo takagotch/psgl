@@ -135,6 +135,12 @@ SELECT * FROM bytes_test;
 SELECT * FROM array_test;
 SELECT * FROM array_test WHERE text_array[][] = '';
 
+SELECT name, text_array[1:2][1:2] FROM array_test;
+SELECT name, text_array[][] FROM array_test;
+
+SELECT name, array_dims(0, array_dims()
+  FROM array_test;
+
 
 
 
